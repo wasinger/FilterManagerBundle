@@ -11,7 +11,8 @@
 
 namespace ONGR\FilterManagerBundle\Search;
 
-use JMS\Serializer\Serializer;
+//use JMS\Serializer\Serializer;
+use Symfony\Component\Serializer\Serializer;
 use ONGR\ElasticsearchBundle\Result\DocumentIterator;
 use ONGR\FilterManagerBundle\Filter\ViewData;
 use ONGR\FilterManagerBundle\SerializableInterface;
@@ -92,7 +93,7 @@ class SearchResponse implements SerializableInterface
         ];
 
         foreach ($this->result as $document) {
-            $data['documents'][] = $this->serializer->toArray($document);
+            $data['documents'][] = $this->serializer->normalize($document);
         }
 
         foreach ($this->filters as $name => $filter) {
